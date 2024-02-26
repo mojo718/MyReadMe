@@ -9,6 +9,18 @@ const inquirer = require('inquirer')
 const questions = [
     {
         type: 'input',
+        name: 'github',
+        message: 'Enter Title:',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("A valid project title is required.");
+            }
+            return true;
+        }
+    },
+
+    {
+        type: 'input',
         name: 'title',
         message: 'Enter Title:',
         validate: function (answer) {
@@ -62,6 +74,7 @@ const questions = [
 function writeToFile(answers, licenseBadge) {
     return `
     #README
+    ${answers.title}
 
     ${licenseBadge}
 
@@ -99,8 +112,8 @@ function writeToFile(answers, licenseBadge) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions).then((answers) => {
-        // You might want to handle the licenseBadge here
-        const licenseBadge = ""; // You need to define how you get this badge
+      
+        const licenseBadge = ""; 
         const readmeContent = writeToFile(answers, licenseBadge);
         
         fs.writeFile('README.md', readmeContent, (err) => {
