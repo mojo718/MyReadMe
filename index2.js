@@ -1,8 +1,16 @@
+//Psuedo code and Test JS
+
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 
 // Questions to prompt the user
 const questions = [
+    {
+        type: 'input',
+        name: 'title',
+        message: 'Enter Title:'
+    },
     {
         type: 'input',
         name: 'description',
@@ -68,7 +76,7 @@ ${answers.tests}
     // Add badge and license notice based on user choice
     const badge = (answers.license === 'free') ? 'Free License Badge' : 'Full License Badge';
     const licenseNotice = (answers.license === 'free') ? 'This application is covered under the Free License.' : 'This application is covered under the Full License.';
-    
+
     readmeContent += `## License
 ![${badge}](link-to-badge)
 
