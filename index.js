@@ -2,14 +2,14 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer')
-
+// const generateMarkdown = require('./utils')
 
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
-        name: 'github',
+        name: 'title',
         message: 'Enter Title:',
         validate: function (answer) {
             if (answer.length < 1) {
@@ -64,10 +64,18 @@ const questions = [
     },
     {
         type: 'list',
+        message: 'Choose your license for your project.',
         name: 'license',
-        message: 'Choose a license:',
-        choices: ['Free', 'full']
-    },
+        choices: [
+            { value: 'Apache' },   
+            { value: 'BSD3' },  
+            { value: 'LGPL' },  
+            { value: 'MIT' },  
+            { value: 'MPL' }, 
+            { value: 'None' }, 
+        ]
+      },
+
 ]
 
 // TODO: Create a function to write README file
