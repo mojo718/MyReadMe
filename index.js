@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 
 const fs = require('fs');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 // const generateMarkdown = require('./utils')
 
 
@@ -9,16 +10,26 @@ const inquirer = require('inquirer')
 const questions = [
     {
         type: 'input',
-        name: 'title',
-        message: 'Enter Title:',
+        name: 'github',
+        message: 'Enter your Github username:',
         validate: function (answer) {
             if (answer.length < 1) {
-                return console.log("A valid project title is required.");
+                return console.log("A github username is required.");
             }
             return true;
         }
     },
-
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your Email Address username:',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("A github username is required.");
+            }
+            return true;
+        }
+    },
     {
         type: 'input',
         name: 'title',
@@ -44,7 +55,13 @@ const questions = [
     {
         type: 'input',
         name: 'installation',
-        message: 'Enter Installation instructions:'
+        message: 'Enter Installation instructions: (please provide detailed steps)',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("Installation structions are required.");
+            }
+            return true;
+        }
     },
     {
         type: 'input',
@@ -59,7 +76,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'tests',
+        name: 'test',
         message: 'Enter Test instructions:'
     },
     {
@@ -67,74 +84,38 @@ const questions = [
         message: 'Choose your license for your project.',
         name: 'license',
         choices: [
-            { value: 'Apache' },   
-            { value: 'BSD3' },  
-            { value: 'LGPL' },  
-            { value: 'MIT' },  
-            { value: 'MPL' }, 
-            { value: 'None' }, 
+            { value: 'MIT' },
+            { value: 'Apache' },
+            { value: 'LGPL' },
+            { value: 'MPL' },
+            { value: 'None' },
         ]
-      },
+    },
 
 ]
 
 // TODO: Create a function to write README file
-function writeToFile(answers, licenseBadge) {
-    return `
-    #README
-    ${answers.title}
-
-    ${licenseBadge}
-
-    ## Description
-
-    ${answers.description}
-
-    ## Table of Contents
-    - [License](#license)
-    - [Description](#description)
-    - [Table of Contents](#table-of-contents)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
-
-    ## Installation 
-    ${answers.installation}
-
-    ## Usage
-    ${answers.usage}
-
-    ## License
-    ${answers.license === 'free' ? 'This application is covered under the Free License.' : 'This application is covered under a Full License.'}
-
-    ## Contributing
-    ${answers.contributing}
-
-    ## Tests
-    ${answers.contributing}
-     `
-};
-
-// TODO: Create a function to initialize app
-function init() {
+function generateReadme() {
     inquirer.prompt(questions).then((answers) => {
-      
-        const licenseBadge = ""; 
-        const readmeContent = writeToFile(answers, licenseBadge);
-        
-        fs.writeFile('README.md', readmeContent, (err) => {
-            if (err) throw err;
-            console.log('README.md has been saved!');
-        });
+        const markdownContent = generateMarkdown(answers);
+        const filename = `${answers.github},md`;
+        fs.writeFile(filename , markdownContent, (err) => err ? console.error(err) : console.log("Readme has been successfully generated"));
     });
 }
 
+// TODO: Create a function to initialize app
+// function init() {
+//     inquirer.prompt(questions).then((answers) => {
 
-   
+//         const licenseBadge = "";
+//         const readmeContent = writeToFile(answers, licenseBadge);
 
-
+//         fs.writeFile('README.md', readmeContent, (err) => {
+//             if (err) throw err;
+//             console.log('README.md has been saved!');
+//         });
+//     });
+// }
 
 // Function call to initialize app
-init();
+generateReadme()

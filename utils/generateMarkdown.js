@@ -1,30 +1,76 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// Render license badge if user choose license option
 
-// found shields.io to create badges
+function badge(license) {
+    if (license !== "None") {
+      return `![Badge](https://img.shields.io/badge/License-${license}-blue.svg)`
+    }
+    return ``;
+  }
 
-function renderLicenseBadge(license) {
+// Render license table of content if user choose license option
+
+  function link(license) {
+    if (license !== "None") {
+      return `- [License](#license-none)`
+    }
+    return ``;
+  }
+
+// Render license section if user choose license option
+
+  function section(license) {
+    if (license !== "None") {
+      return `## License 
+      This application is covered by the ${license} license.`
+    }
+    return ``;
   
+  }
+
+// Function generating answers to README file based on user's input
+
+function generateMarkdown(answers) {
+return `
+# TiTle
+${answers.title}
+
+${badge(answers.license)}
+
+${answers.name}
+
+## Description 🔎
+${answers.description}
+
+## Table of Contents 📖
+- [Installation](#installation-⚙️)
+- [Usage](#usage-🎮)
+${link(answers.license)}
+- [Test](#tests-🧪)
+- [Credits](#credits-🧑‍🤝‍🧑)
+- [Questions](#questions-🙋)
+- [Deployed Application](#deployed-application-🚀)
+
+## Installation ⚙️
+${answers.install}
+
+## Usage 🎮
+${answers.usage}
+
+${section(answers.license)}
+
+## Tests 🧪
+${answers.test}
+
+
+## Questions 🙋
+If there are any questions, feel free to contact my email at: ${answers.email}
+
+You can also find me on GitHub at: [${answers.github}](https://www.github.com/${answers.github})
+
+## Deployed Application 🚀
+This application was deplopyed at [${answers.deploy}](${answers.deploy})
+`
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  
-}
+module.exports = generateMarkdown
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-
-
- }
-
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
-
-`;
-}
-
-module.exports = generateMarkdown;
