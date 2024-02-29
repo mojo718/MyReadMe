@@ -1,12 +1,10 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
-// const generateMarkdown = require('./utils')
 
-
-// TODO: Create an array of questions for user input
+// Array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -54,7 +52,7 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'installation',
+        name: 'install',
         message: 'Enter Installation instructions: (please provide detailed steps)',
         validate: function (answer) {
             if (answer.length < 1) {
@@ -63,7 +61,7 @@ const questions = [
             return true;
         }
     },
-    {
+   {
         type: 'input',
         name: 'usage',
         message: 'Enter Usage Information:',
@@ -80,6 +78,22 @@ const questions = [
         message: 'Enter Test instructions:'
     },
     {
+        type: 'input',
+        name: 'contributors',
+        message: 'Enter names of Contributors:'
+    },
+    {
+        type: 'input',
+        name: 'deploy',
+        message: 'Where is this application deployed:',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("Valid usage Information is required.");
+            }
+            return true;
+        }
+    },
+    {
         type: 'list',
         message: 'Choose your license for your project.',
         name: 'license',
@@ -94,28 +108,15 @@ const questions = [
 
 ]
 
-// TODO: Create a function to write README file
+//  function to write README file
 function generateReadme() {
     inquirer.prompt(questions).then((answers) => {
         const markdownContent = generateMarkdown(answers);
-        const filename = `${answers.github},md`;
+        // const filename = `${answers.github},md`;
+        const filename = "ReadMe.md"
         fs.writeFile(filename , markdownContent, (err) => err ? console.error(err) : console.log("Readme has been successfully generated"));
     });
 }
-
-// TODO: Create a function to initialize app
-// function init() {
-//     inquirer.prompt(questions).then((answers) => {
-
-//         const licenseBadge = "";
-//         const readmeContent = writeToFile(answers, licenseBadge);
-
-//         fs.writeFile('README.md', readmeContent, (err) => {
-//             if (err) throw err;
-//             console.log('README.md has been saved!');
-//         });
-//     });
-// }
 
 // Function call to initialize app
 generateReadme()
