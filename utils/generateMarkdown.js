@@ -2,7 +2,7 @@
 
 function badge(license) {
     if (license !== "None") {
-      return `![Badge](https://img.shields.io/badge/License-${license}-blue.svg)`
+      return `![Static Badge](https://img.shields.io/badge/${license}-blue.svg)`
     }
     return ``;
   }
@@ -11,7 +11,7 @@ function badge(license) {
 
   function link(license) {
     if (license !== "None") {
-      return `- [License](#license-none)`
+      return `- [License](#license-${license})`
     }
     return ``;
   }
@@ -20,23 +20,24 @@ function badge(license) {
 
   function section(license) {
     if (license !== "None") {
-      return `## License 
+      return `## License
       This application is covered by the ${license} license.`
     }
     return ``;
   
   }
+ 
 
 // Function generating answers to README file based on user's input
+// i got icon idea from other sample readme generators. 
 
 function generateMarkdown(answers) {
 return `
-# TiTle
+# Project Title
 ${answers.title}
 
-${badge(answers.license)}
+${badge(answers.license)} 
 
-${answers.name}
 
 ## Description 🔎
 ${answers.description}
@@ -44,10 +45,9 @@ ${answers.description}
 ## Table of Contents 📖
 - [Installation](#installation-⚙️)
 - [Usage](#usage-🎮)
-${link(answers.license)}
+- ${link(answers.license)}
 - [Test](#tests-🧪)
-- [Credits](#credits-🧑‍🤝‍🧑)
-- [Questions](#questions-🙋)
+- [Contibuters](#Contributors-🧑‍🤝‍🧑)
 - [Deployed Application](#deployed-application-🚀)
 
 ## Installation ⚙️
@@ -61,6 +61,8 @@ ${section(answers.license)}
 ## Tests 🧪
 ${answers.test}
 
+## Contributors 🧑‍🤝‍🧑
+${answers.contributors}
 
 ## Questions 🙋
 If there are any questions, feel free to contact my email at: ${answers.email}
