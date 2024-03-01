@@ -61,7 +61,7 @@ const questions = [
             return true;
         }
     },
-   {
+    {
         type: 'input',
         name: 'usage',
         message: 'Enter Usage Information:',
@@ -83,17 +83,6 @@ const questions = [
         message: 'Enter names of Contributors:'
     },
     {
-        type: 'input',
-        name: 'deploy',
-        message: 'Where is this application deployed:',
-        validate: function (answer) {
-            if (answer.length < 1) {
-                return console.log("Valid usage Information is required.");
-            }
-            return true;
-        }
-    },
-    {
         type: 'list',
         message: 'Choose your license for your project.',
         name: 'license',
@@ -112,9 +101,9 @@ const questions = [
 function generateReadme() {
     inquirer.prompt(questions).then((answers) => {
         const markdownContent = generateMarkdown(answers);
-        // const filename = `${answers.github},md`;
-        const filename = "ReadMe.md"
-        fs.writeFile(filename , markdownContent, (err) => err ? console.error(err) : console.log("Readme has been successfully generated"));
+        const filename = `${answers.github},md`;
+        // const filename = "ReadMe.md"
+        fs.writeFile(filename, markdownContent, (err) => err ? console.error(err) : console.log("Readme has been successfully generated"));
     });
 }
 
