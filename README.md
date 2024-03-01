@@ -43,7 +43,7 @@ If there are any questions, feel free to contact my email at: mojo718@yahoo.com
 You can also find me on GitHub at: [mojo718](https://www.github.com/mojo718)
 
 
-![Demo Video](https://app.screencastify.com/v3/watch/IdVWnkkgE4CrToDJgGY0)
+Link to Demo Video https://app.screencastify.com/v3/watch/IdVWnkkgE4CrToDJgGY0
 
 
  
