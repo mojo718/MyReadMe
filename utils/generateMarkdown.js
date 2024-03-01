@@ -71,7 +71,7 @@ You can also find me on GitHub at: [${answers.github}](https://www.github.com/${
 
 ## Deployed Application 🚀
 This application was deplopyed at [${answers.deploy}](${answers.deploy})
-`
+` 
 }
 
 module.exports = generateMarkdown
