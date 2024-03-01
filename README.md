@@ -25,7 +25,7 @@ This an application to create a Readme.md.  You will be prompted to enter your G
 ## Usage 🎮
 1. Start Application by running index.js in terminal
 2. Answer all questions
-3. The application will create a file named <githubname>.md.  Rename the MD file accordingly.
+3. The application will create a file with your githubname.md.  Rename the MD file accordingly.
 
 
 ## License
